@@ -1,4 +1,4 @@
-/*import java.awt.Color;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
@@ -11,56 +11,40 @@ import java.util.concurrent.TimeUnit;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-import javax.swing.*;*/
+import javax.swing.*;
 
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.util.ArrayList;
-import java.util.Timer;
-
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-
-public class Execution implements Application {
+public class Execution implements InterListe {
 	
-	static Stage frame;
-	static Scene panel;
-	static ArrayList<ToggleGroup> listeButtonGroup;
+	static JFrame frame;
+	static JLayeredPane panel;
+	static ArrayList<ButtonGroup> listeButtonGroup;
 	static Players player1;
 	static Timer t; 
-	static Label lapelTime;
-	static String chemin;
+	static JLabel lapelTime;
+	String chemin;
+	static Player player;
 	static int cpt=0;
-	static Button btn_valider;
-	static Label lapel_score;
-	static int tentative;
+	static JButton btn_valider;
+	static JLabel lapel_score;
 
 	public static void main(String[] args) {
 	 
  
-		listeButtonGroup = new ArrayList<ToggleGroup>();
+		listeButtonGroup = new ArrayList<ButtonGroup>();
 		ArrayList<Quiz> listeQuiz = new ArrayList<Quiz>();
-		ArrayList<Player_QUIZ> listePlayer_QUIZ = new ArrayList<Player_QUIZ>();
+		  ArrayList<Player_QUIZ> listePlayer_QUIZ = new ArrayList<Player_QUIZ>();
 	 
 		
-		frame = new Stage("Quiz");
+		frame = new JFrame("Quiz");
 		frame.setBounds(100, 100, 800, 600);
-		panel = new LayeredPane();
+		panel = new JLayeredPane();
 		frame.getContentPane().add(panel);
 		login();
 	 
 		
 		frame.setVisible(true);
-		frame.setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
-		lapelTime= new Label();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		lapelTime= new JLabel();
 		
 		playerMusic("quiz-show.mp3",30000);
 		
@@ -102,34 +86,34 @@ public class Execution implements Application {
 	public static void login() {
 		
 		
-		Label label_nom = new Label("nom");
+		JLabel label_nom = new JLabel("nom");
 		label_nom.setBounds(30, 30, 60, 20);
 		panel.add(label_nom);
 		
-		Label label_prenom = new Label("prenom");
+		JLabel label_prenom = new JLabel("prenom");
 		label_prenom.setBounds(30, 70, 60, 20);
 		panel.add(label_prenom);
 		
-		Label label_age = new Label("age");
+		JLabel label_age = new JLabel("age");
 		label_age.setBounds(30, 110, 60, 20);
 		panel.add(label_age);
 		
-		TextField txt_nom = new TextField();
+		JTextField txt_nom = new JTextField();
 		txt_nom.setBounds(90, 30, 140, 20);
 		panel.add(txt_nom);
 		
-		TextField txt_prenom = new TextField();
+		JTextField txt_prenom = new JTextField();
 		txt_prenom.setBounds(90, 70, 140, 20);
 		panel.add(txt_prenom);
 		
-		TextField txt_age = new TextField();
+		JTextField txt_age = new JTextField();
 		txt_age.setBounds(90, 110, 140, 20);
 		panel.add(txt_age);
 		
-		Button btn_debut = new Button("démarrer le quiz");
+		JButton btn_debut = new JButton("démarrer le quiz");
 		btn_debut.setBounds(80, 150, 140, 25);
 		panel.add(btn_debut);
-		btn_debut.addEventHandler(new EventHandler() {
+		btn_debut.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -147,7 +131,7 @@ public class Execution implements Application {
 						}
 						else {
 							t.stop();
-							Dialogue(null, "GAME OVER");
+							JOptionPane.showMessageDialog(null, "GAME OVER");
 		                    System.exit(0);
 						}
 					}
@@ -182,18 +166,18 @@ public class Execution implements Application {
 		remplirePanelNiveau(1);
 		
 
-		btn_valider = new Button("valider");
+		btn_valider = new JButton("valider");
 		btn_valider.setBounds(650, 500, 100, 30);
 		panel.add(btn_valider);
-		btn_valider.addEventHandler(new EventHandler() {
+		btn_valider.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(checkReponseAllQuestion(1)) {
-					Tentative(1);
+					afficheCorrection(1);
 				}
 				else {
-					Dialogue(null, "Merci de répondre à toutes les questions");
+					JOptionPane.showMessageDialog(null, "Merci de répondre à toutes les questions");
 				}
 			}
 		});
@@ -215,18 +199,18 @@ public class Execution implements Application {
 		
 		remplirePanelNiveau(2);
 		
-		Button btn_valider = new Button("valider");
+		JButton btn_valider = new JButton("valider");
 		btn_valider.setBounds(650, 500, 100, 30);
 		panel.add(btn_valider);
-		btn_valider.addEventHandler(new EventHandler() {
+		btn_valider.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(checkReponseAllQuestion(2)) {
-					Tentative(2);
+					afficheCorrection(2);
 				}
 				else {
-					Dialogue(null, "Merci de répondre à toutes les questions");
+					JOptionPane.showMessageDialog(null, "Merci de répondre à toutes les questions");
 				}
 			}
 		});
@@ -247,18 +231,18 @@ public class Execution implements Application {
 		
 		remplirePanelNiveau(3);
 		
-		Button btn_valider = new Button("valider");
+		JButton btn_valider = new JButton("valider");
 		btn_valider.setBounds(650, 500, 100, 30);
 		panel.add(btn_valider);
-		btn_valider.addEventHandler(new EventHandler() {
+		btn_valider.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(checkReponseAllQuestion(3)) {
-					Tentative(3);
+					afficheCorrection(3);
 				}
 				else {
-					Dialogue(null, "Merci de répondre à toutes les questions");
+					JOptionPane.showMessageDialog(null, "Merci de répondre à toutes les questions");
 				}
 			}
 		});
@@ -280,7 +264,8 @@ public class Execution implements Application {
 		{
 			ret= "Niveau 3";
 		}
-		return ret;		
+		return ret;
+		
 	}
 	
 	
@@ -290,23 +275,23 @@ public class Execution implements Application {
 		int start , end;
 		if(niveau == 1)
 		{
-			start = 0;
-			end   = 5;
+			start=0;
+			end  =5;
  
 		}
 		else if(niveau == 2)
 		{
-			start = 5;
-			end   = 10;
+			start=5;
+			end  =10;
 		}
 		else
 		{
-			start = 10;
-			end   = 15;
+			start=10;
+			end  =15;
 		}
-		
-		
 		 int totalReponseCorrectParNiveau =0;
+ 
+		  
 		  
 		 for(int i = start; i<end; i++) {
  			 
@@ -322,6 +307,7 @@ public class Execution implements Application {
 			 }
 			 
 			}
+		 
 		 
 		 return totalReponseCorrectParNiveau;
 	}
@@ -346,7 +332,7 @@ public class Execution implements Application {
 		}
 		panel.removeAll();
 		panel.repaint();
-		lapel_score =new Label();
+		lapel_score =new JLabel();
 		lapel_score.setBounds(700,30,70,20);
 		panel.add(lapel_score);
 		lapelTime.setBounds(700,10,70,20);
@@ -354,18 +340,18 @@ public class Execution implements Application {
 		int y=40;
 		for(int i = start;i<end;i++) {
 			int x=30;
-			Label lapel_question = new Label("<html><p>"+listeQuiz.get(i).getQuestion()+"</p></html>");
+			JLabel lapel_question = new JLabel("<html><p>"+listeQuiz.get(i).getQuestion()+"</p></html>");
 			lapel_question.setBounds(x, y, 700, 60);
 			panel.add(lapel_question);
 			
 			y += 50;
-			RadioButton choise1 = new RadioButton("<html><p>"+listeQuiz.get(i).getChoice_one()+"</p></html>");
+			JRadioButton choise1 = new JRadioButton("<html><p>"+listeQuiz.get(i).getChoice_one()+"</p></html>");
 			choise1.setActionCommand(listeQuiz.get(i).getChoice_one());
 			choise1.setBounds(x, y, 200, 30);
 			panel.add(choise1);
 			
 			x += 200;
-			RadioButton choise2 = new RadioButton("<html><p>"+listeQuiz.get(i).getChoice_two()+"</p></html>");
+			JRadioButton choise2 = new JRadioButton("<html><p>"+listeQuiz.get(i).getChoice_two()+"</p></html>");
 			choise2.setActionCommand(listeQuiz.get(i).getChoice_two());
 			choise2.setBounds(x, y, 200, 30);
 			panel.add(choise2);
@@ -376,7 +362,7 @@ public class Execution implements Application {
 			
 			if(listeQuiz.get(i).getChoice_three() != null) {
 				x += 200;
-				RadioButton choise3 = new RadioButton("<html><p>"+listeQuiz.get(i).getChoice_three()+"</p></html>");
+				JRadioButton choise3 = new JRadioButton("<html><p>"+listeQuiz.get(i).getChoice_three()+"</p></html>");
 				choise3.setActionCommand(listeQuiz.get(i).getChoice_three());
 				choise3.setBounds(x, y, 200, 30);
 				panel.add(choise3);
@@ -496,7 +482,7 @@ public class Execution implements Application {
 			if(listePlayer_QUIZ.get(i).isGoodchoice()) {
 				Enumeration<AbstractButton> radsV = listeButtonGroup.get(i).getElements();
 		        while (radsV.hasMoreElements()) {
-		            RadioButton temp = (RadioButton) radsV.nextElement();
+		            JRadioButton temp = (JRadioButton) radsV.nextElement();
 		            if (temp.isSelected()) {
 		                temp.setForeground(Color.green);
 		                break;
@@ -506,7 +492,7 @@ public class Execution implements Application {
 			else{
 				Enumeration<AbstractButton> radsV = listeButtonGroup.get(i).getElements();
 		        while (radsV.hasMoreElements()) {
-		            RadioButton temp = (RadioButton) radsV.nextElement();
+		            JRadioButton temp = (JRadioButton) radsV.nextElement();
 		            if (temp.isSelected()) {
 		                temp.setForeground(Color.red);
 		            }
@@ -517,50 +503,13 @@ public class Execution implements Application {
 			}
 		}
 	}
-	
-	public static void Tentative(int niveau) {
-		if (cpt == 0) {
-			getreponses(niveau);
-			if (tentative == 0 ) {
-				if ( niveau == 1 && calculeScore(1) >= 40 || niveau == 2 && calculeScore(2) >= 60 || niveau == 3 && calculeScore(3) >= 80) {
-					afficheCorrection(niveau);
-				}
-				else {
-					tentative = 1;
-					for (int i = 0; i < 5; i ++) {
-						listePlayer_QUIZ.remove(listePlayer_QUIZ.size()-1);
-					}
-					Dialogue("Attention", "Votre réponses sont incorrect, vous avez une autre tentative!");
-				}
-			}
-			else {
-                tentative = 0; 
-                afficheCorrection(niveau);
-            }
-        }
-        else {
-            afficheCorrection(niveau);
-        }
-    }
-	
-	public static void Dialogue(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.initStyle(StageStyle.UTILITY);
-        alert.setTitle("Alert");
-        alert.setHeaderText(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-	
-	
-	
 	public static void afficheCorrection(int niveau) {
 			if(cpt==0) {
 				getreponses(niveau);
 				cpt=1;
 				btn_valider.setText("Suivant");
 				correction(niveau);
-				lapel_score.setText("Score : " + calculeScore(niveau));
+				lapel_score.setText("score : " + calculeScore(niveau));
 			}
 			else {
 				cpt=0;
