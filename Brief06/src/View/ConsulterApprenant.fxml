@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="360.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Update_Competance">
+   <children>
+      <Pane layoutX="-135.0" layoutY="-369.0" prefHeight="714.0" prefWidth="766.0">
+         <children>
+            <ComboBox fx:id="comboBox_cmpt" layoutX="367.0" layoutY="415.0" onAction="#Select" prefHeight="25.0" prefWidth="293.0" />
+            <Label fx:id="txt_label_title" layoutX="241.0" layoutY="407.0" text="Compétance" />
+            <Label fx:id="txt_label_N1_txt" layoutX="290.0" layoutY="510.0" text="Niveau 1" />
+            <Label fx:id="txt_label_N2_txt" layoutX="449.0" layoutY="510.0" text="Niveau2" />
+            <Label fx:id="txt_label_N3_txt" layoutX="604.0" layoutY="510.0" text="Niveau 3" />
+            <Button fx:id="gFiWkB" layoutX="473.0" layoutY="629.0" mnemonicParsing="false" onAction="#Update_Niveau" text="Update" />
+            <Label fx:id="txt_label" layoutX="259.0" layoutY="462.0" prefHeight="17.0" prefWidth="475.0" />
+            <Label fx:id="txt_label_N1" layoutX="290.0" layoutY="559.0" onMouseClicked="#click_Label_1" prefHeight="17.0" prefWidth="43.0" />
+            <Label fx:id="txt_label_N2" layoutX="449.0" layoutY="559.0" onMouseClicked="#click_Label_2" prefHeight="17.0" prefWidth="47.0" />
+            <Label fx:id="txt_label_N3" layoutX="604.0" layoutY="559.0" onMouseClicked="#click_Label_3" prefHeight="17.0" prefWidth="43.0" />
+            <Button fx:id="gFiWkB" layoutX="677.0" layoutY="407.0" mnemonicParsing="false" onAction="#NextScene" prefHeight="41.0" prefWidth="82.0" text="Fermer" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
