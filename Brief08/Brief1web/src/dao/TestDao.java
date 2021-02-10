@@ -9,7 +9,7 @@ public class TestDao {
 	public static void main(String[] args) {
 		
 		ArticleDaoImpl dao = new ArticleDaoImpl();
-		Article p1 = new Article("Lila", "joli fleur", 22, 21);
+		Article p1 = new Article("MERY", "BLAbla", 22, 21);
 		dao.save(p1);	
 		Article p2 = new Article("cactus", "ca pique", 40, 23);
 		dao.save(p2);

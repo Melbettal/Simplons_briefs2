@@ -21,7 +21,7 @@
 			
 			<div class="form-group">
 				<label class="control-label">Description</label>
-				<input type="text" name="descirption" value="${article.description }"  class="form-control" />
+				<input type="text" name="description" value="${article.description }"  class="form-control" />
 				<span></span>
 			</div>
 				

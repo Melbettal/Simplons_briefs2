@@ -24,7 +24,7 @@ public class ArticleDaoImpl implements ArticleDao {
 			ps.setString(2, p.getDescription());
 			ps.setDouble(3, p.getPrix());
 			ps.setInt(4, p.getQuantite());
-			ps.executeUpdate(); //execution de la requêtte
+			ps.executeUpdate();//execution de la requêtte
 			
 			
 			ps2 = connection.prepareStatement
@@ -41,7 +41,7 @@ public class ArticleDaoImpl implements ArticleDao {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return p;
 	}
 
 	@Override

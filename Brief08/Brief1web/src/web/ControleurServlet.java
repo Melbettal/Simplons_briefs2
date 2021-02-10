@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.ws.Response;
 
 import com.entities.Article;
+import com.mysql.cj.exceptions.DataConversionException;
 
 import dao.ArticleDao;
 import dao.ArticleDaoImpl;
@@ -43,7 +44,7 @@ public class ControleurServlet extends HttpServlet {
 			request.getRequestDispatcher("Articles.jsp").forward(request, response ); //transmettre les deux objets
 		}
 		else if(path.equals("/Saisie.do")) {
-			request.setAttribute("article", new Article(null, null, 0, 0)); //récuperer la forme de l'input
+			request.setAttribute("article", new Article()); //récuperer la forme de l'input
 			request.getRequestDispatcher("SaisieArticle.jsp").forward(request, response ); 
 		}	
 		else if(path.equals("/SaveArticle.do") && (request.getMethod().equals("POST"))) { //pour récupérer les mêmes donner a fin de l'éditer
@@ -81,6 +82,9 @@ public class ControleurServlet extends HttpServlet {
 			request.setAttribute("article", p);
 			request.getRequestDispatcher("confirmation.jsp").forward(request, response);	
 		}	
+		else {
+			response.sendError(HttpServletResponse.SC_NOT_FOUND);
+		}
 	}
 	
 	@Override
