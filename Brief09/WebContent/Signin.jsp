@@ -27,14 +27,14 @@
 				</div>
 			<div class="mb-3" style="padding: 15px">
   					<label for="formGroupExampleInput2" class="form-label">Mot de passe :</label>
-  					<input type="text" class="form-control" name="mdp" >
+  					<input type="password" class="form-control" minlength="8" name="mdp" >
 			</div>
 			<div class="col-12">
     			<button class="btn btn-primary" type="submit" style="margin-left: 180px; background-color: #024669; border-radius: 0px;">Se connecter</button>
   			</div>
   			<div class="" style= "padding: 10px; text-align: center; padding: 10px">
   			<p>Vous n'avez pas un compte?</p>
-    		<h5>S'enregistrer </h5> </div>
+    		<h5 onclick="document.location='Signup.jsp'">S'enregistrer </h5> </div>
     		
 
     		</div>

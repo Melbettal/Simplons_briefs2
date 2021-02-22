@@ -1,65 +1,87 @@
 package com.entities;
 
-import java.io.Serializable;
+//import java.io.Serializable;
 
-public class Produit implements Serializable {
+public class Produit  {
 	
 	private int id;
-	private String nom_produit;
-	private String description_produit;
-	private double prix_produit;
-	private int quantite_produit;
-
-public Produit(int id, String nom_produit, String description_produit, double prix_produit, int quantite_produit) {
-	super();
-	this.id = id;
-	this.nom_produit = nom_produit;
-	this.description_produit = description_produit;
-	this.prix_produit = prix_produit;
-	this.quantite_produit = quantite_produit;
-}
-
-public int getId() {
-	return id;
-}
-
-public void setId(int id) {
-	this.id = id;
-}
-
-public String getNom_produit() {
-	return nom_produit;
-}
-
-public void setNom_produit(String nom_produit) {
-	this.nom_produit = nom_produit;
-}
-
-public String getDescription_produit() {
-	return description_produit;
-}
-
-public void setDescription_produit(String description_produit) {
-	this.description_produit = description_produit;
-}
-
-public double getPrix_produit() {
-	return prix_produit;
-}
-
-public void setPrix_produit(double prix_produit) {
-	this.prix_produit = prix_produit;
-}
-
-public int getQuantite_produit() {
-	return quantite_produit;
-}
-
-public void setQuantite_produit(int quantite_produit) {
-	this.quantite_produit = quantite_produit;
-}
+	private String image;
+	private String nom;
+	private String description;
+	private double prix;
+	private int quantite;
 
 
+	public Produit(int id, String image, String nom, String description, double prix, int quantite) {
+		super();
+		this.id = id;
+		this.image = image;
+		this.nom = nom;
+		this.description = description;
+		this.prix = prix;
+		this.quantite = quantite;
+	}
+	
+	public Produit (String image, String nom, String description, double prix, int quantite) {
+		this.image = image;
+		this.nom = nom;
+		this.description = description;
+		this.prix = prix;
+		this.quantite = quantite;
+	}
+	
+	public Produit() {
+		// TODO Auto-generated constructor stub
+	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
+	public int getQuantite() {
+		return quantite;
+	}
+
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+
+	
 }
 

@@ -1,18 +1,20 @@
 package dao;
 
+import com.entities.Produit;
 import com.entities.User;
+import com.entities.Vote;
+import com.service.ContrVote;
 
 public class Test {
 	
 	public static void main(String[] args) {
 		
+		ContrVote cv = new ContrVote();
+		Vote v = new Vote(null,1,1);
+		cv.saveVote(v);
 		
-		UserDaoImpl dao = new UserDaoImpl();
-		User u1 = new User(1, "mery", "meryame@gmail.com", "22BB");
-		dao.insertSignup(u1);
+		System.out.println(cv.checkVote(v));
 		
-		System.out.println(u1.toString());
-	
 	}
 
 }

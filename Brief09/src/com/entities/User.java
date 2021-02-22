@@ -60,6 +60,12 @@ public class User implements Serializable {
 	}
 
 	
+	
+@Override
+	public String toString() {
+		return "User [id=" + id + ", nom_complet=" + nom_complet + ", Email=" + Email + ", mdp=" + mdp + "]";
+	}
+
 public void validationEmail(String email) throws Exception {
 	// TODO Auto-generated method stub
 		if (email != null && email.trim().length() != 0) {
